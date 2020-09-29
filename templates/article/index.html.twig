@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ArticleController!{% endblock %}
+
+{% block body %}
+
+<h1>Pages articles</h1>
+
+<ul>
+  <!-- je boucle dans le tableau d'articles issu de la fonction index() de ArticleController  -->
+  {% for article in articles %}
+  <!-- affichage du contenu -->
+  <li>Id: {{ article.Id }}
+      Title: {{ article.title }}
+      Content: {{ article.content }}
+      Date de publication: {{ article.createdAt | date('d/m/Y - H:i:s') }}
+      Date de mise a jour: {{ article.updatedAt | date('d/m/Y - H:i:s') }}
+      <a href=" {{ path ('article_show', {'id' : article.id}) }} ">Détail</a>
+  </li>
+  <!-- fin de la boucle -->
+  {% endfor %}
+</ul>
+
+{% endblock %}
