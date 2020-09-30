@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\ArticleRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ArticleRepository::class)
@@ -27,6 +28,11 @@ class Article
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank (message = "Le titre est obligatoire")
+     * @Assert\Length(
+     *    min = 5, max = 100,
+     *    minMessage = "Le titre doit comporter {{limit}} caractères minimum",
+     *    maxMessage = "Le titre doit comporter {{limit}} caractères maximum" )
      */
     private $content;
 
